@@ -1,0 +1,425 @@
+:root {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+    
+    /* colors text, background, ecosystem */
+    --c-t: #222;
+    --c-t-secondary:#555;
+    --c-t-tertiary: #999;
+    --c-t-onBtn:    #FFF;
+    --c-t-account: #334048;
+    --c-bg:          #FFF;
+    --c-bg-btn:      #000;
+    --c-bg-card:     #F1F5F6;
+    --c-bg-card-hover:#E8E8F1;
+    --c-border:      rgba(0,0,0,0.1);
+    --c-e-polkadotjs:#FFD29D;
+    --c-e-talisman:  #DBF490;
+
+    /* font */
+    --fs-body: 15px;
+    --fs-body-small: 13px;
+    --fs-button: 15px;
+    --fs-button-small: 12px;
+    --fw-button: 600;
+    --fs-price: 21px;
+    --fw-price: 600;
+    --fs-title: 16px;
+    --fw-title: 600;
+    --fs-title-small: 13px;
+    --fs-label: 13px;
+    --fw-label: 500;
+    --fs-account-title: 16px;
+    --fw-account-title: 600;
+    --fs-account-address: 12px;
+    --fs-account-balance: 13px;
+    --card-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.02), 0px 6px 6px 0px rgba(0, 0, 0, 0.03), 0px 12px 12px 0px rgba(0, 0, 0, 0.04), 0px 20px 20px 0px rgba(0, 0, 0, 0.04), 0px 40px 32px 0px rgba(0, 0, 0, 0.05), 0px 100px 80px 0px rgba(0, 0, 0, 0.07);
+}
+@supports (font-variation-settings: normal) {
+    :root { font-family: InterVariable, sans-serif; }
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0 0 0;
+    background-color: var(--c-bg);
+    color: var(--c-t);
+    font-family: InterVariable, sans-serif;
+    font-size: var(--fs-body);
+    line-height: 130%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--c-bg-card);
+}
+
+/* generic text */
+.t-secondary {
+    color: var(--c-t-secondary);
+}
+.t-tertiary {
+    color: var(--c-t-tertiary);
+}
+.t-small {
+    font-size: var(--fs-body-small);
+    letter-spacing: 0.01em;
+    line-height: 1.3em;
+}
+.t-inherit {
+    font-size: inherit !important;
+}
+.t-price {
+    font-size: var(--fs-price);
+    font-weight: var(--fw-price);
+}
+.t-title {
+    font-size: var(--fs-title);
+    font-weight: var(--fw-title);
+}
+.t-title-small {
+    font-size: var(--fs-title-small);
+    font-weight: var(--fw-title);
+}
+[class^='t-account'] {
+    color: var(--c-t-account);
+}
+.t-account-title {
+    font-size: var(--fs-account-title);
+    font-weight: var(--fw-account-title);
+    max-width: 100%;
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+}
+.t-account-address {
+    font-size: var(--fs-account-address);
+    font-weight: var(--fw-account-address);
+    font-family: monospace;
+}
+.t-account-balance {
+    font-size: var(--fs-account-balance);
+    font-weight: var(--fw-account-balance);
+    font-family: monospace;
+    letter-spacing: 0.01em;
+    text-wrap: nowrap;
+}
+
+/* ecosystem colors */
+.bg-extension[data-extension="polkadotjs"] {
+    background-color: var(--c-e-polkadotjs) !important;
+}
+.bg-extension[data-extension="talisman"] {
+    background-color: var(--c-e-talisman) !important;
+}
+.bg-extension[data-extension="unknown"]:nth-child(1) {
+    background-color: #ead2af;
+}
+.bg-extension[data-extension="unknown"]:nth-child(2) {
+    background-color: #baf0d0;
+}
+.bg-extension[data-extension="unknown"]:nth-child(3) {
+    background-color: #e0d9f9;
+}
+.bg-extension[data-extension="unknown"]:nth-child(4) {
+    background-color: #f5d3fd;
+}
+.bg-extension[data-extension="unknown"]:nth-child(5) {
+    background-color: #bdf1f1;
+}
+.bg-extension[data-extension="unknown"]:nth-child(6) {
+    background-color: #fffcaf;
+}
+.bg-extension[data-extension="unknown"]:nth-child(7) {
+    background-color: #f4c7c7;
+}
+.bg-extension[data-extension="unknown"]:nth-child(8) {
+    background-color: #cfdff7;
+}
+.bg-extension[data-extension="unknown"]:nth-child(9) {
+    background-color: #b9f2ab;
+}
+.bg-extension[data-extension="unknown"]:nth-child(10) {
+    background-color: #ffe4ed;
+}
+
+/* generic styles */
+.w100 {
+    width: 100%;
+}
+.min-w0 {
+    min-width: 0;
+}
+.disabled {
+    pointer-events: none;
+    opacity: 0.4 !important;
+}
+.invisible {
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+}
+.card {
+    padding: 16px;
+    background: var(--c-bg);
+    box-shadow: var(--card-shadow);
+    border-radius: 16px;
+}
+.ani-spin {
+    -webkit-animation:spin 2s linear infinite;
+    -moz-animation:spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+/* generic containers */
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+.flex-row {
+    display: flex;
+    align-items: center;
+}
+.flex-baseline {
+    align-items: baseline;
+}
+.flex-start {
+    align-items: flex-start;
+}
+.flex-end {
+    align-items: flex-end;
+}
+.wrap {
+    flex-wrap: wrap;
+}
+.flex-justify {
+    justify-content: center;
+}
+.gap-xl {
+    gap: 24px;
+}
+.gap-large {
+    gap: 16px;
+}
+.gap-medium {
+    gap: 8px;
+}
+.gap-small {
+    gap: 4px;
+}
+
+/* icons */
+.material-symbols-outlined {
+    font-size: 1.4em;
+    opacity: 0.7;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-text-select: none;
+    -webkit-user-select: none;
+}
+
+/* placeholders */
+.identicon {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    background: #d2d8da;
+    border-radius: 999px;
+}
+
+/* kalatori checkout UI components */
+.kco-container {
+    width: 100%;
+    max-width: 320px;
+    padding: 24px;
+    background: var(--c-bg);
+    border-radius: 16px;
+}
+
+/* button */
+.kco-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: var(--c-t-onBtn);
+    background-color: var(--c-bg-btn);
+    cursor: pointer;
+    opacity: 0.8;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: var(--fs-button);
+    font-weight: var(--fw-button);
+}
+.kco-button:hover {
+    opacity: 1;
+}
+.kco-button.secondary {
+    background-color: var(--c-bg-card);
+    color: var(--c-t);
+}
+.kco-button.tertiary {
+    background-color: var(--c-bg);
+    color: inherit;
+}
+.kco-button.small {
+    height: 24px;
+    padding: 4px 8px;
+    text-wrap: nowrap;
+    width: fit-content;
+    font-size: var(--fs-button-small);
+}
+
+/* label */
+.kco-label {
+    font-size: var(--fs-label);
+    font-weight: var(--fw-label);
+    border-radius: 999px;
+    padding: 6px 12px;
+}
+
+/* collapsable */
+.kco-collapsable.collapsed > .kco-collapse-toggler .material-symbols-outlined {
+    rotate: 0deg;
+}
+.kco-collapse-toggler .material-symbols-outlined {
+    rotate: 90deg;
+    transition: rotate 0.3s;
+}
+.kco-collapse-toggler {
+    cursor: pointer;
+}
+.kco-collapsable.collapsed .kco-collapse-content {
+    max-height: 0;
+    overflow: hidden;
+}
+
+/* select method panel */
+.kco-method-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    border: solid 1px var(--c-border);
+    border-radius: 8px;
+    cursor: pointer;
+}
+.kco-method-panel:hover, .kco-method-panel[data-is-selected="true"] {
+    background-color: var(--c-bg-card);
+}
+.kco-method-panel[data-is-selected="false"] .hide-in-unselected {
+    display: none;
+}
+.kco-method-panel[data-is-selected="true"] .hide-in-selected {
+    display: none;
+}
+.kco-method-panel[data-state="init"] .hide-in-init {
+    display: none;
+}
+.kco-method-panel[data-state="ready"] .hide-in-ready {
+    display: none;
+}
+.kco-method-panel[data-state="processing"] .hide-in-processing {
+    display: none;
+}
+.kco-order-status {
+    min-height: 32px;
+    align-content: center;
+    text-align: center;
+}
+
+/* manual method */
+.kco-manual-address-field {
+    border: solid 1px var(--c-border);
+    border-radius: 8px;
+    padding: 4px 6px 6px;
+    overflow-wrap: anywhere;
+    max-width: 50%;
+}
+
+/* extension method */
+.kco-accounts {
+    position: relative;
+    box-shadow: var(--card-shadow);
+    border-radius: 16px;
+    background: var(--c-bg);
+}
+.kco-accounts .scroll {
+    max-height: 350px;
+    overflow: scroll;
+    padding-bottom: 24px;
+}
+
+.kco-account {
+    position: relative;
+    padding: 6px 8px;
+    background-color: var(--c-bg-card);
+    border-radius: 8px;
+}
+.kco-account.inactive {
+    opacity: 0.6;
+}
+.kco-account:after {
+    content: " ";
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    border-radius: 999px;
+}
+.kco-account[data-extension="polkadotjs"]::after {
+    background-color: var(--c-e-polkadotjs);
+}
+.kco-account[data-extension="talisman"]::after {
+    background-color: var(--c-e-talisman);
+}
+.kco-method-panel[data-state="init"] .kco-account.active:hover {
+    background-color: var(--c-bg-card-hover);
+    cursor: pointer;
+}
+.kco-account .kco-button {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    right: 0;
+    margin-right: 60px;
+    transition: all 0.3s;
+}
+.kco-method-panel[data-state="init"] .kco-account.active:hover .t-account-balance {
+    display: none;
+}
+.kco-method-panel[data-state="init"] .kco-account.active:hover .kco-button {
+    display: flex;
+    pointer-events: all;
+    margin-right: 8px;
+    opacity: 1;
+}
+
+.loading-bar {
+    position: absolute;
+    width: 100%;
+    height: 32px;
+    bottom: 0px;
+    left: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    pointer-events: none;
+}
+.loading-bar::before, .loading-bar::after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 4px;
+    bottom: 0;
+}
+.loading-bar::before {
+    width: 100%;
+    background: var(--c-border);
+}
+.loading-bar::after {
+    width: 67%;
+    background: var(--c-bg-btn);
+}

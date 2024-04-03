@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>Kalatori Checkout</title>
+</head>
+<body>
+    <div class="kco-container flex-col gap-xl">
+
+        <div class="flex-col gap-small">
+            <div class="flex-row flex-baseline gap-small t-price">
+                38.94
+                <div class="kco-button small secondary t-inherit">
+                    USDC
+                    <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                </div>
+            </div>
+            <div class="t-small t-tertiary">
+                35.96€, 1 USDC = 1.08€
+            </div>
+        </div>
+
+        <div class="flex-col gap-large" id="kco-methods">
+
+            <div class="kco-method-panel" id="kco-method-manual" data-state="init" data-is-selected="false">
+                <div class="flex-row flex-start gap-medium">
+                    <div class="kco-radio">
+                        <span class="material-symbols-outlined hide-in-selected">radio_button_unchecked</span>
+                        <span class="material-symbols-outlined hide-in-unselected">radio_button_checked</span>
+                    </div>
+                    <div class="flex-col gap-small">
+                        <span class="t-title">Pay from external wallet</span>
+                        <span class="t-secondary t-small">
+                            Send your payment to the unique address for your oder
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="flex-col gap-large card hide-in-init">
+                    <div class="flex-row gap-medium">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?data=1D5B7uGdn6MAnu2DZA1BSqvPpJjYFRJ9fjLyJaN3kpsfniXH" class="min-w0"/>
+                        <div class="kco-manual-address-field flex-col gap-medium">
+                            <span class="t-account-address">
+                                1D5B7uGdn6MAnu2DZA1BSqvPpJjYFRJ9fjLyJaN3kpsfniXH
+                            </span>
+                            <div class="kco-button secondary">Copy address</div>
+                        </div>
+                    </div>
+                    <div class="flex-row flex-justify hide-in-init gap-medium t-title ">
+                        Total received 0 USDC
+                        <span class="material-symbols-outlined ani-spin">autorenew</span>
+                    </div>
+                </div>
+
+                <div class="kco-order-status t-small hide-in-init">Waiting for incoming transactions. You can still <u class="stop-processing">cancel</u> this payment method</div>
+                
+            </div>
+
+            <div class="kco-method-panel active" id="kco-method-extension" data-state="init" data-is-selected="false">
+                <div class="flex-row flex-start gap-medium">
+                    <div class="kco-radio">
+                        <span class="material-symbols-outlined hide-in-selected">radio_button_unchecked</span>
+                        <span class="material-symbols-outlined hide-in-unselected">radio_button_checked</span>
+                    </div>
+                    <div class="flex-col gap-small">
+                        <span class="t-title">Pay with browser wallet</span>
+                        <span class="t-secondary t-small">
+                            Select account from your browser extension wallet
+                        </span>
+                    </div>
+                </div>
+                <div class="hide-in-unselected flex-col gap-large">
+                    <div class="flex-row flex-end">
+                        <div class="flex-row gap-small wrap w100">
+                            <div class="kco-label bg-extension" data-extension="polkadotjs">
+                                PolkadotJS
+                            </div>
+                            <div class="kco-label bg-extension" data-extension="talisman">
+                                Talisman
+                            </div>
+                            <div class="kco-label bg-extension" data-extension="unknown">
+                                Unknown Wallet
+                            </div>
+                        </div>
+                        <div class="kco-button small tertiary t-inherit">
+                            <span class="material-symbols-outlined">sync</span>
+                        </div>
+                    </div>
+
+                    <div class="kco-accounts">
+                        <div class="flex-col gap-large scroll card">
+                            <span class="t-small hide-in-init hide-in-processing" id="reset-method-extension">
+                                ← Back to account list
+                            </span>
+                            <span class="t-small hide-in-init hide-in-ready" id="reset-method-extension">
+                                Selected account
+                            </span>
+                            <div class="flex-col gap-medium">
+                                <div class="kco-account active flex-row gap-small" data-extension="polkadotjs">
+                                    <div class="identicon"></div>
+                                    <div class="flex-col w100 min-w0">
+                                        <div class="t-account-title">Alice Long Name</div>
+                                        <div class="t-account-address">1Grw...utQY</div>
+                                    </div>
+                                    <span class="t-account-balance">
+                                        999.10<span class="t-tertiary">00</span> USDC
+                                    </span>
+                                    <div class="kco-button small">
+                                        <span>Select</span>
+                                        <span class="material-symbols-outlined">arrow_right_alt</span>
+                                    </div>
+                                </div>
+                                <div class="kco-account active flex-row gap-small" data-extension="polkadotjs">
+                                    <div class="identicon"></div>
+                                    <div class="flex-col w100 min-w0">
+                                        <span class="t-account-title">Bob</span>
+                                        <span class="t-account-address">1I72...dy7o</span>
+                                    </div>
+                                    <span class="t-account-balance">
+                                        7.2291 USDC
+                                    </span>
+                                    <div class="kco-button small">
+                                        <span>Select</span>
+                                        <span class="material-symbols-outlined">arrow_right_alt</span>
+                                    </div>
+                                </div>
+                                <div class="kco-account active active flex-row gap-small" data-extension="talisman">
+                                    <div class="identicon"></div>
+                                    <div class="flex-col w100 min-w0">
+                                        <span class="t-account-title">Clara</span>
+                                        <span class="t-account-address">1Grw...utQY</span>
+                                    </div>
+                                    <span class="t-account-balance">
+                                        7881.3846 USDC
+                                    </span>
+                                    <div class="kco-button small">
+                                        <span>Select</span>
+                                        <span class="material-symbols-outlined">arrow_right_alt</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="t-small t-secondary hide-in-ready hide-in-processing">
+                                A balance of 1.29 USDC will be sufficient to cover both your order and the transaction fee on the Polkadot network
+                            </span>
+                            <div class="kco-collapsable flex-col gap-medium hide-in-ready hide-in-processing">
+                                <div class="kco-collapse-toggler flex-row">
+                                    <span class="material-symbols-outlined">chevron_right</span>
+                                    <span class="t-title-small">Accounts below 1.29 USDC</span>
+                                </div>
+                                <div class="kco-collapse-content flex-col gap-medium">
+                                    <div class="kco-account inactive talisman flex-row gap-small" data-extension="talisman"" data-extension="talisman">
+                                        <div class="identicon"></div>
+                                        <div class="flex-col w100">
+                                            <span class="t-account-title">Daniel</span>
+                                            <span class="t-account-address">17Hj...j88F</span>
+                                        </div>
+                                        <span class="t-account-balance">
+                                            0.2291
+                                        </span>
+                                        <span class="t-account-balance">USDC</span>
+                                        <div class="kco-button">
+                                            <span>Checkout</span>
+                                            <span class="material-symbols-outlined">arrow_right_alt</span>
+                                        </div>
+                                    </div>
+                                    <div class="kco-account inactive talisman flex-row gap-small" data-extension="talisman"">
+                                        <div class="identicon"></div>
+                                        <div class="flex-col w100">
+                                            <span class="t-account-title">Eva</span>
+                                            <span class="t-account-address">1HH7...J9d4</span>
+                                        </div>
+                                        <span class="t-account-balance">
+                                            0.00<span class="t-tertiary">00</span>
+                                        </span>
+                                        <span class="t-account-balance">USDC</span>
+                                        <div class="kco-button">
+                                            <span>Checkout</span>
+                                            <span class="material-symbols-outlined">arrow_right_alt</span>
+                                        </div>
+                                    </div>
+                                    <div class="kco-account inactive talisman flex-row gap-small" data-extension="talisman"">
+                                        <div class="identicon"></div>
+                                        <div class="flex-col w100">
+                                            <span class="t-account-title">Frank</span>
+                                            <span class="t-account-address">1kd8...mH7k</span>
+                                        </div>
+                                        <span class="t-account-balance">
+                                            0.00<span class="t-tertiary">00</span>
+                                        </span>
+                                        <span class="t-account-balance">USDC</span>
+                                        <div class="kco-button">
+                                            <span>Checkout</span>
+                                            <span class="material-symbols-outlined">arrow_right_alt</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-row flex-justify gap-medium t-title hide-in-processing hide-in-init">
+                                Ready to sign
+                            </div>
+                            <div class="flex-row flex-justify gap-medium t-title hide-in-ready hide-in-init">
+                                Total received 0 USDC
+                                <span class="material-symbols-outlined ani-spin">autorenew</span>
+                            </div>
+                            <div class="loading-bar hide-in-init hide-in-ready"></div>
+                        </div>
+                    </div>
+
+                    <div class="kco-order-status t-small hide-in-init hide-in-processing">Place order to continue with payment</div>
+                    <div class="kco-order-status t-small hide-in-init hide-in-ready">Waiting for signature in your browser extension. You can still <u class="stop-processing">cancel</u> this payment method</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="flex-row flex-start gap-small">
+            <span class="material-symbols-outlined">check_box</span>
+            <span>Agree with <u>terms and conditions</u> to see the address and continue with payment</span>
+        </div>
+
+        <div class="kco-button disabled" id="pay" data-method="">Place order</button>
+
+    </div>
+</body>
+</html>
+ 
