@@ -1,6 +1,5 @@
 $(document).ready(function() {
     
-    // select startProcessingment method
     const selectCurrency = $('#select-currency')
     const methods = $('.kco-method-panel')
     const methodExtension = $('#kco-method-extension')
@@ -36,7 +35,7 @@ $(document).ready(function() {
         methods.addClass('disabled')
         $('.kco-method-panel#' + startProcessing.attr('data-method')).removeClass('disabled')
 
-        // set selected method state to processing
+        // set state of the selected method to processing
         $('#' + startProcessing.attr('data-method')).attr('data-state', 'processing')
     })
     
@@ -54,7 +53,7 @@ $(document).ready(function() {
     // select account
     const accounts = $('.kco-account')
     accounts.click(function () {
-        // do not run if account is selected or startProcessingment is processing
+        // do not run if account is selected or payment is processing
         if (methodExtension.attr('data-state') == 'processing' || methodExtension.attr('data-state') == 'ready') {
             return
         }
@@ -76,12 +75,10 @@ $(document).ready(function() {
     })
 
     // reset selected account
-    var resetMethodExtension = $('#reset-method-extension')
+    const resetMethodExtension = $('#reset-method-extension')
     resetMethodExtension.click(function () {
-        methodExtension.removeClass('state-ready')
         methodExtension.attr('data-state', 'init')
-        
-        $('.kco-label').removeClass('hide-in-ready')
+        $('.kco-label').removeClass('hide-in-ready hide-in-processing')
         startProcessing.addClass('disabled')
     })
 
