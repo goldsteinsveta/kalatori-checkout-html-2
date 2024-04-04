@@ -15,8 +15,8 @@ $(document).ready(function() {
         methods.attr('data-is-selected', 'false')
         $(this).attr('data-is-selected', 'true')
         
-        // enable pay button if manual is ready
-        if ($(this).attr('id') == 'kco-method-manual' || $(this).attr('id') == 'kco-method-extension' && methodExtension.attr('data-state') == 'ready') {
+        // enable pay button if selected method is ready
+        if ($(this).attr('id') == 'kco-method-manual' || ( $(this).attr('id') == 'kco-method-extension' && methodExtension.attr('data-state') == 'ready') ) {
             pay.removeClass('disabled')
             pay.attr('data-method', $(this).attr('id'))
             return
@@ -35,6 +35,7 @@ $(document).ready(function() {
 
     const stopProcessing = $('.stop-processing')
     stopProcessing.click(function () {
+        methods.attr('data-is-selected', 'false')
         methods.attr('data-state', 'init')
         methods.removeClass('disabled')
         pay.addClass('disabled')
