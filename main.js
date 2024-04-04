@@ -38,6 +38,7 @@ $(document).ready(function() {
         methods.attr('data-is-selected', 'false')
         methods.attr('data-state', 'init')
         methods.removeClass('disabled')
+        $('.kco-label').removeClass('hide-in-ready hide-in-processing')
         pay.addClass('disabled')
     })
 
@@ -55,7 +56,7 @@ $(document).ready(function() {
         $(this).removeClass('hide-in-ready hide-in-processing')
         
         // hide all but the selected extension
-        var extension = $(this).attr('data-extension')
+        const extension = $(this).attr('data-extension')
         $('.kco-label:not([data-extension="' + extension + '"])').addClass('hide-in-ready hide-in-processing')
 
         // change method state
