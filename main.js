@@ -1,10 +1,13 @@
 $(document).ready(function() {
     
-    // select payment method
+    // select startProcessingment method
+    const selectCurrency = $('#select-currency')
     const methods = $('.kco-method-panel')
     const methodExtension = $('#kco-method-extension')
-    const pay = $('#pay')
+    const startProcessing = $('#start-processing')
+    const stopProcessing = $('.stop-processing')
 
+    // select method
     methods.click(function () {
         // do not run if selected
         if ($(this).attr('data-is-selected') == 'true') {
@@ -15,38 +18,43 @@ $(document).ready(function() {
         methods.attr('data-is-selected', 'false')
         $(this).attr('data-is-selected', 'true')
         
-        // enable pay button if selected method is ready
+        // enable startProcessing button if selected method is ready
         if ($(this).attr('id') == 'kco-method-manual' || ( $(this).attr('id') == 'kco-method-extension' && methodExtension.attr('data-state') == 'ready') ) {
-            pay.removeClass('disabled')
-            pay.attr('data-method', $(this).attr('id'))
+            startProcessing.removeClass('disabled')
+            startProcessing.attr('data-method', $(this).attr('id'))
             return
         }
-        pay.addClass('disabled')
+        startProcessing.addClass('disabled')
     })
 
-    pay.click(function () {
+    // start processing
+    startProcessing.click(function () {
+        // disable currency selection
+        selectCurrency.addClass('disabled')
+
         // disable all methods, but the selected
         methods.addClass('disabled')
-        $('.kco-method-panel#' + pay.attr('data-method')).removeClass('disabled')
+        $('.kco-method-panel#' + startProcessing.attr('data-method')).removeClass('disabled')
 
         // set selected method state to processing
-        $('#' + pay.attr('data-method')).attr('data-state', 'processing')
+        $('#' + startProcessing.attr('data-method')).attr('data-state', 'processing')
     })
-
-    const stopProcessing = $('.stop-processing')
+    
+    // stop processing
     stopProcessing.click(function () {
+        selectCurrency.removeClass('disabled')
         methods.attr('data-is-selected', 'false')
         methods.attr('data-state', 'init')
         methods.removeClass('disabled')
         $('.kco-label').removeClass('hide-in-ready hide-in-processing')
-        pay.addClass('disabled')
+        startProcessing.addClass('disabled')
     })
 
     // extension method
     // select account
     const accounts = $('.kco-account')
     accounts.click(function () {
-        // do not run if account is selected or payment is processing
+        // do not run if account is selected or startProcessingment is processing
         if (methodExtension.attr('data-state') == 'processing' || methodExtension.attr('data-state') == 'ready') {
             return
         }
@@ -62,9 +70,9 @@ $(document).ready(function() {
         // change method state
         methodExtension.attr('data-state', 'ready')
 
-        // enable pay button
-        pay.attr('data-method', 'kco-method-extension')
-        pay.removeClass('disabled')
+        // enable startProcessing button
+        startProcessing.attr('data-method', 'kco-method-extension')
+        startProcessing.removeClass('disabled')
     })
 
     // reset selected account
@@ -74,7 +82,7 @@ $(document).ready(function() {
         methodExtension.attr('data-state', 'init')
         
         $('.kco-label').removeClass('hide-in-ready')
-        pay.addClass('disabled')
+        startProcessing.addClass('disabled')
     })
 
     // collapse and exapnd toggle

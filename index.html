@@ -18,10 +18,11 @@
         <div class="flex-col gap-small">
             <div class="flex-row flex-baseline gap-small t-price">
                 38.94
-                <div class="kco-button small secondary t-inherit">
-                    USDC
-                    <span class="material-symbols-outlined">keyboard_arrow_down</span>
-                </div>
+                <select class="kco-select" id="select-currency">
+                    <option value="usdc">USDC</option>
+                    <option value="usdt">USDT</option>
+                    <option value="dot">DOT</option>
+                </select>
             </div>
             <div class="t-small t-tertiary">
                 35.96€, 1 USDC = 1.08€
@@ -90,7 +91,7 @@
                                 Unknown Wallet
                             </div>
                         </div>
-                        <div class="kco-button small tertiary t-inherit">
+                        <div class="kco-button small tertiary">
                             <span class="material-symbols-outlined">sync</span>
                         </div>
                     </div>
@@ -221,7 +222,7 @@
 
         </div>
 
-        <div class="kco-button disabled" id="pay" data-method="">Place order</button>
+        <div class="kco-button disabled" id="start-processing" data-method="">Place order</button>
 
     </div>
 </body>

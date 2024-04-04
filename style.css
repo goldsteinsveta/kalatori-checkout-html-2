@@ -65,9 +65,6 @@ body {
     letter-spacing: 0.01em;
     line-height: 1.3em;
 }
-.t-inherit {
-    font-size: inherit !important;
-}
 .t-price {
     font-size: var(--fs-price);
     font-weight: var(--fw-price);
@@ -253,7 +250,7 @@ body {
     font-size: var(--fs-button);
     font-weight: var(--fw-button);
 }
-.kco-button:hover {
+.kco-button:hover, .kco-select:hover {
     opacity: 1;
 }
 .kco-button.secondary {
@@ -270,6 +267,28 @@ body {
     text-wrap: nowrap;
     width: fit-content;
     font-size: var(--fs-button-small);
+}
+
+/* select */
+.kco-select {
+    padding: 4px 0 4px 2px;
+    border-radius: 4px;
+    border: none;
+    border-right: 4px solid var(--c-bg-card);
+    background-color: var(--c-bg-card);
+    color: var(--c-t);
+    font-size: inherit;
+    font-weight: inherit;
+    opacity: 0.8;
+    cursor: pointer;
+}
+.kco-select.disabled {
+    background: transparent;
+    border-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
 }
 
 /* label */
